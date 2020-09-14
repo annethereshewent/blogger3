@@ -25,7 +25,7 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              documentation (Hello World!)
+              documentation
             </a>.
           </p>
           <p>

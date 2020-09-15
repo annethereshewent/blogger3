@@ -18,7 +18,7 @@
       <logo id="mobile-logo" />
       <!-- login panel -->
       <v-row>
-        <v-col lg="6" sm="6" class="mt-16 mx-auto">
+        <v-col id="login-column" lg="10" sm="6" class="mt-16">
           <v-card id="login-panel" dark>
             <v-form
               ref="form"
@@ -104,21 +104,26 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '~vuetify/src/styles/settings/_variables';
-#login-panel {
-  .v-text-field {
-    margin: auto;
-    max-width: 80%;
+#login-column {
+  @media #{map-get($display-breakpoints, 'md-and-up')} {
+    margin-left: 160px;
   }
-  .links {
-    text-align: center;
+  @media #{map-get($display-breakpoints, 'md-and-down')} {
+    margin: auto;
+  }
+  #login-panel {
+    .v-text-field {
+      margin: auto;
+      max-width: 80%;
+    }
+    .links {
+      text-align: center;
+    }
   }
 }
 #logo-section {
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
     display: none;
-  }
-  .existing-users {
-    margin-left: 100px;
   }
 }
 #mobile-logo {

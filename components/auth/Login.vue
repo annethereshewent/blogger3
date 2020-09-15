@@ -1,9 +1,9 @@
 <template>
   <v-row>
-    <v-col id="logo-section" cols="5">
+    <logo />
+    <v-col id="existing-user-section" cols="5">
       <!-- add account / login to existing account area -->
       <div class="existing-users">
-        <logo />
         <v-row>
           <v-col v-for="account in accounts" :key="account.id">
             <user-card :user="account" />
@@ -15,10 +15,9 @@
       </div>
     </v-col>
     <v-col lg="5" sm="12">
-      <logo id="mobile-logo" />
       <!-- login panel -->
       <v-row>
-        <v-col id="login-column" lg="10" sm="6" class="mt-16">
+        <v-col id="login-column" lg="10" sm="6">
           <v-card id="login-panel" dark>
             <v-form
               ref="form"
@@ -130,13 +129,8 @@ export default {
     }
   }
 }
-#logo-section {
+#existing-user-section {
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
-    display: none;
-  }
-}
-#mobile-logo {
-  @media #{map-get($display-breakpoints, 'md-and-up')} {
     display: none;
   }
 }

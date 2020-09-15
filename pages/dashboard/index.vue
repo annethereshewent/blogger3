@@ -6,6 +6,7 @@
 </template>
 <script>
 export default {
+  middleware: ['auth'],
   computed: {
     user() {
       return this.$store.state.auth.user

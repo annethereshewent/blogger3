@@ -9,6 +9,7 @@ export const state = () => ({
 export const mutations = {
   // some stuff
   setUser(state, user) {
+    state.authenticated = !!user
     state.user = user
   },
 
@@ -18,7 +19,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async login({ commit }, { email, password }) {
+  async login({ commit, dispatch }, { email, password }) {
     let result = null
     try {
       result = await this.$auth.login(email, password)
@@ -31,11 +32,22 @@ export const actions = {
       this.$cookies.set('token', result.access_token)
 
       commit('setUser', result.user)
-      commit('setToken', result.access_token)
+      dispatch('setToken', result.access_token)
 
       return true
     }
 
     return false
+  },
+
+  setToken({ commit }, token) {
+    if (process.client) {
+      try {
+        this.$axios.setHeader('Authorization', `Bearer ${token}`)
+        commit('setToken', token)
+      } catch (err) {
+        console.log(err)
+      }
+    }
   },
 }

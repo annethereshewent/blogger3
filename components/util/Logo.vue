@@ -1,10 +1,16 @@
 <template>
-  <h1 id="title">
-    <span class="bracket mr-1">[</span>
-    <span class="title-text mr-1">blogger</span>
-    <span class="bracket">]</span>
-    <span class="period">.</span>
-  </h1>
+  <v-container fluid>
+    <v-row>
+      <v-col>
+        <h1 id="title">
+          <span class="bracket mr-1">[</span>
+          <span class="title-text mr-1">blogger</span>
+          <span class="bracket">]</span>
+          <span class="period">.</span>
+        </h1>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script>
 export default {

@@ -1,11 +1,6 @@
 <template>
-  <v-card width="350px" height="350px">
-    <v-img
-      :src="user.avatar_src"
-      class="white--text align-end"
-      width="350px"
-      height="300px"
-    />
+  <v-card>
+    <v-img :src="user.avatar_src" class="white--text align-end" />
     <v-card-actions>
       <v-spacer />
       <v-btn color="secondary" text @click="login()">{{ user.username }}</v-btn>
@@ -23,3 +18,21 @@ export default {
   },
 }
 </script>
+<style lang="scss" scoped>
+@import '~vuetify/src/styles/settings/_variables';
+.v-card {
+  width: 175px;
+  height: 175px;
+  @media #{map-get($display-breakpoints, 'md-and-down')} {
+    width: 125px;
+    height: 125px;
+  }
+  .v-img {
+    width: 100%;
+    height: 125px;
+    @media #{map-get($display-breakpoints, 'md-and-down')} {
+      height: 75px;
+    }
+  }
+}
+</style>

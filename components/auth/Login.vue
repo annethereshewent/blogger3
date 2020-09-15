@@ -1,8 +1,8 @@
 <template>
-  <v-container fluid>
-    <v-row>
-      <v-col cols="6">
-        <!-- add account / login to existing account area -->
+  <v-row>
+    <v-col id="logo-section" cols="5">
+      <!-- add account / login to existing account area -->
+      <div class="existing-users">
         <logo />
         <v-row>
           <v-col v-for="account in accounts" :key="account.id">
@@ -12,64 +12,60 @@
             <add-user-card />
           </v-col>
         </v-row>
-      </v-col>
-      <v-col cols="6">
-        <!-- login panel -->
-        <v-row>
-          <v-col cols="9" class="mt-16 mx-auto">
-            <v-card id="login-panel" dark>
-              <v-form
-                ref="form"
-                v-model="valid"
-                lazy-validation
-                @submit.prevent="validate()"
-              >
-                <v-text-field
-                  v-model="email"
-                  :rules="emailRules"
-                  color="accent"
-                  label="Email"
-                />
-                <v-text-field
-                  v-model="password"
-                  color="accent"
-                  type="password"
-                  label="Password"
-                />
-                <div class="mt-4">
-                  <v-btn
-                    color="primary"
-                    rounded
-                    class="ml-6 mb-6"
-                    width="90%"
-                    type="submit"
-                  >
-                    Sign In
-                  </v-btn>
-                </div>
-              </v-form>
-              <div class="links pb-4">
-                <router-link class="blogger-link" to="/forgot-password">
-                  Forgot password?
-                </router-link>
-              </div>
-              <v-divider />
-              <div class="mt-4 text-center pb-4">
+      </div>
+    </v-col>
+    <v-col lg="5" sm="12">
+      <logo id="mobile-logo" />
+      <!-- login panel -->
+      <v-row>
+        <v-col lg="6" sm="6" class="mt-16 mx-auto">
+          <v-card id="login-panel" dark>
+            <v-form
+              ref="form"
+              v-model="valid"
+              lazy-validation
+              @submit.prevent="validate()"
+            >
+              <v-text-field
+                v-model="email"
+                :rules="emailRules"
+                color="accent"
+                label="Email"
+              />
+              <v-text-field
+                v-model="password"
+                color="accent"
+                type="password"
+                label="Password"
+              />
+              <div class="mt-4 text-center">
                 <v-btn
-                  color="secondary"
+                  color="primary"
                   rounded
-                  width="50%"
-                  @click="register()"
+                  class="mb-6"
+                  width="90%"
+                  type="submit"
                 >
-                  Sign Up
+                  Sign In
                 </v-btn>
               </div>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-col>
-    </v-row>
-  </v-container>
+            </v-form>
+            <div class="links pb-4">
+              <router-link class="blogger-link" to="/forgot-password">
+                Forgot password?
+              </router-link>
+            </div>
+            <v-divider />
+            <div class="mt-4 text-center pb-4">
+              <v-btn color="secondary" rounded width="50%" @click="register()">
+                Sign Up
+              </v-btn>
+            </div>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-col>
+  </v-row>
 </template>
 <script>
 export default {
@@ -107,6 +103,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '~vuetify/src/styles/settings/_variables';
 #login-panel {
   .v-text-field {
     margin: auto;
@@ -114,6 +111,19 @@ export default {
   }
   .links {
     text-align: center;
+  }
+}
+#logo-section {
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    display: none;
+  }
+  .existing-users {
+    margin-left: 100px;
+  }
+}
+#mobile-logo {
+  @media #{map-get($display-breakpoints, 'md-and-up')} {
+    display: none;
   }
 }
 </style>

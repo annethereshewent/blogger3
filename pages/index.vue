@@ -24,6 +24,7 @@
               <div class="mt-4">
                 <v-btn
                   color="primary"
+                  rounded
                   class="ml-6 mb-6"
                   width="90%"
                   @click="login()"
@@ -37,8 +38,13 @@
                 </router-link>
               </div>
               <v-divider />
-              <div class="mt-2 text-center pb-4">
-                <v-btn color="secondary" width="50%" @click="register()">
+              <div class="mt-4 text-center pb-4">
+                <v-btn
+                  color="secondary"
+                  rounded
+                  width="50%"
+                  @click="register()"
+                >
                   Sign Up
                 </v-btn>
               </div>

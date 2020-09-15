@@ -21,7 +21,7 @@ export default {
     font-family: 'Baloo Tammudu 2';
     // font-weight: 400;
     font-weight: 800;
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     color: white;
   }
   .bracket {

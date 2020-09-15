@@ -4,6 +4,14 @@
       <v-col cols="6">
         <!-- add account / login to existing account area -->
         <logo />
+        <v-row>
+          <v-col v-for="account in accounts" :key="account.id">
+            <user-card :user="account" />
+          </v-col>
+          <v-col>
+            <add-user-card />
+          </v-col>
+        </v-row>
       </v-col>
       <v-col cols="6">
         <!-- login panel -->
@@ -16,11 +24,15 @@
                 lazy-validation
                 @submit.prevent="validate()"
               >
-                <v-text-field v-model="email" color="accent" label="Email" />
+                <v-text-field
+                  v-model="email"
+                  :rules="emailRules"
+                  color="accent"
+                  label="Email"
+                />
                 <v-text-field
                   v-model="password"
                   color="accent"
-                  :rules="emailRules"
                   type="password"
                   label="Password"
                 />
@@ -72,6 +84,11 @@ export default {
     valid: false,
     error: null,
   }),
+  computed: {
+    accounts() {
+      return this.$store.state.auth.accounts
+    },
+  },
   methods: {
     login() {
       // do something
@@ -80,6 +97,7 @@ export default {
       // do something
     },
     validate() {
+      console.log('validating...')
       if (this.$refs.form.validate()) {
         this.error = null
         this.login()

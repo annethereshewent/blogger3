@@ -3,6 +3,7 @@
     <v-row>
       <v-col cols="6">
         <!-- add account / login to existing account area -->
+        <logo />
       </v-col>
       <v-col cols="6">
         <!-- login panel -->

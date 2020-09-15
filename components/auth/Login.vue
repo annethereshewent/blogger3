@@ -86,8 +86,17 @@ export default {
     },
   },
   methods: {
-    login() {
-      // do something
+    async login() {
+      const result = await this.$store.dispatch('auth/login', {
+        email: this.email,
+        password: this.password,
+      })
+
+      if (result) {
+        this.$router.push({
+          path: '/dashboard',
+        })
+      }
     },
     register() {
       // do something

@@ -24,11 +24,22 @@
               <div class="mt-4">
                 <v-btn
                   color="primary"
-                  class="ml-6 mb-8"
+                  class="ml-6 mb-6"
                   width="90%"
                   @click="login()"
                 >
                   Sign In
+                </v-btn>
+              </div>
+              <div class="links pb-4">
+                <router-link class="blogger-link" to="/forgot-password">
+                  Forgot password?
+                </router-link>
+              </div>
+              <v-divider />
+              <div class="mt-2 text-center pb-4">
+                <v-btn color="secondary" width="50%" @click="register()">
+                  Sign Up
                 </v-btn>
               </div>
             </v-card>
@@ -44,6 +55,14 @@ export default {
     email: '',
     password: '',
   }),
+  methods: {
+    login() {
+      // do something
+    },
+    register() {
+      // do something
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -51,6 +70,9 @@ export default {
   .v-text-field {
     margin: auto;
     max-width: 80%;
+  }
+  .links {
+    text-align: center;
   }
 }
 </style>

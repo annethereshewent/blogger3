@@ -25,10 +25,9 @@ export default {
     margin-top: 10px;
     margin-left: 30px;
     font-size: 80px !important;
-    transition: none;
     ::after {
-      background: none;
-      opacity: 1;
+      background: none !important;
+      opacity: 1 !important;
     }
   }
 }

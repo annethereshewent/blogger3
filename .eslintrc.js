@@ -44,5 +44,6 @@ module.exports = {
       },
     ],
     'vue/no-v-html': 'off',
+    'vue/singleline-html-element-content-newline': 0,
   },
 }

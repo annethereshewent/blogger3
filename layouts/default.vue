@@ -5,6 +5,7 @@
         <nuxt />
       </v-container>
     </v-main>
+    <blogger-footer />
   </v-app>
 </template>
 <style lang="scss" scoped>

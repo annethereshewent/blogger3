@@ -50,7 +50,7 @@
         <div class="pb-12">
           <v-card-actions>
             <v-spacer />
-            <v-btn color="blue darken-1" @click="registerUser()">Sign Up</v-btn>
+            <v-btn color="primary" @click="next()">Next</v-btn>
           </v-card-actions>
         </div>
       </v-card>
@@ -80,7 +80,7 @@ export default {
       this.dialog = false
       this.$emit('close-dialog', false)
     },
-    registerUser() {
+    next() {
       //
     },
   },

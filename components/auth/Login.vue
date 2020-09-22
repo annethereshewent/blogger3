@@ -64,6 +64,7 @@
         </v-col>
       </v-row>
     </v-col>
+    <register-modal :show-dialog="dialog" @close-dialog="dialog = false" />
   </v-row>
 </template>
 <script>
@@ -78,6 +79,7 @@ export default {
     ],
     valid: false,
     error: null,
+    dialog: null,
   }),
   computed: {
     accounts() {
@@ -98,7 +100,7 @@ export default {
       }
     },
     register() {
-      // do something
+      this.dialog = true
     },
     validate() {
       console.log('validating...')

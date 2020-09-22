@@ -2,16 +2,19 @@ import Vue from 'vue'
 import { Service } from '~/classes/Service'
 
 class AuthService extends Service {
-  constructor(baseUrl, $axios, $cookies) {
-    super(baseUrl, $axios, $cookies)
+  constructor(baseUrl, app) {
+    super(baseUrl, app)
   }
 
   async login(email, password) {
-    return await this.post('/oauth/token', {
-      username: email,
-      password,
-      grant_type: 'password',
-    })
+    return await this.post(
+      `/oauth/token?client_id=${this.store.state.env.BLOGGER_CLIENT_ID}&client_secret=${this.store.state.env.BLOGGER_CLIENT_SECRET}`,
+      {
+        username: email,
+        password,
+        grant_type: 'password',
+      }
+    )
   }
 
   async register({ username, password, email, gender }) {
@@ -25,13 +28,9 @@ class AuthService extends Service {
 }
 
 export default async ({ app }, inject) => {
-  const { $axios, store, $cookies } = app
+  const { store } = app
 
-  const authService = new AuthService(
-    store.state.env.BLOGGER_SERVICE_URL,
-    $axios,
-    $cookies
-  )
+  const authService = new AuthService(store.state.env.BLOGGER_SERVICE_URL, app)
 
   Vue.prototype.$auth = authService
   Vue.$auth = authService

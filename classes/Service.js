@@ -1,9 +1,11 @@
 export class Service {
   axios = null
   baseURL = null
-  constructor(baseURL, axios, $cookies) {
-    this.axios = axios
+  store = null
+  constructor(baseURL, { $axios, $cookies, store }) {
+    this.axios = $axios
     this.baseURL = baseURL
+    this.store = store
 
     const user = $cookies.get('user')
     if (user != null) {

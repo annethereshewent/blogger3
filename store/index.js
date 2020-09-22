@@ -19,6 +19,8 @@ export const actions = {
     if (process.server) {
       commit('SET_ENV', {
         BLOGGER_SERVICE_URL: process.env.BLOGGER_SERVICE_URL,
+        BLOGGER_CLIENT_ID: process.env.BLOGGER_CLIENT_ID,
+        BLOGGER_CLIENT_SECRET: process.env.BLOGGER_CLIENT_SECRET,
       })
     }
   },

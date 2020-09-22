@@ -7,10 +7,19 @@ class AuthService extends Service {
   }
 
   async login(email, password) {
-    return this.post('/oauth/token', {
+    return await this.post('/oauth/token', {
       username: email,
       password,
       grant_type: 'password',
+    })
+  }
+
+  async register({ username, password, email, gender }) {
+    return await this.post('/api/v1/auth/register', {
+      username,
+      password,
+      email,
+      gender,
     })
   }
 }

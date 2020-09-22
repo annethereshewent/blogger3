@@ -50,7 +50,7 @@
         <div class="pb-12">
           <v-card-actions>
             <v-spacer />
-            <v-btn color="primary" @click="next()">Next</v-btn>
+            <v-btn color="primary" @click="register()">Register</v-btn>
           </v-card-actions>
         </div>
       </v-card>
@@ -80,8 +80,14 @@ export default {
       this.dialog = false
       this.$emit('close-dialog', false)
     },
-    next() {
-      //
+    async register() {
+      const data = await this.$auth.register(this.form)
+
+      if (data.success) {
+        this.$router.push({
+          path: '/dashboard',
+        })
+      }
     },
   },
 }

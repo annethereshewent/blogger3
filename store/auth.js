@@ -11,10 +11,12 @@ export const mutations = {
   setUser(state, user) {
     state.authenticated = !!user
     state.user = user
+    this.$cookies.set('user', user)
   },
 
   setToken(state, token) {
     state.token = token
+    this.$cookies.set('token', token)
   },
 }
 
@@ -27,10 +29,9 @@ export const actions = {
       console.log(err)
     }
 
-    if (result != null) {
-      this.$cookies.set('user', result.user)
-      this.$cookies.set('token', result.access_token)
+    console.log(result)
 
+    if (result != null) {
       commit('setUser', result.user)
       dispatch('setToken', result.access_token)
 

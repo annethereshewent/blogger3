@@ -11,46 +11,49 @@
           <span class="headline">Sign Up</span>
         </v-card-title>
         <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col cols="12">
-                <v-text-field
-                  v-model="form.username"
-                  label="Username*"
-                  required
-                />
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12">
-                <v-text-field v-model="form.email" label="Email*" required />
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12">
-                <v-text-field
-                  v-model="form.password"
-                  label="Password*"
-                  type="password"
-                  required
-                />
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col>
-                <v-radio-group v-model="form.gender" row>
-                  <v-radio label="Male" value="M" />
-                  <v-radio label="Female" value="F" />
-                  <v-radio label="Other" value="X" />
-                </v-radio-group>
-              </v-col>
-            </v-row>
-          </v-container>
+          <v-form lazy-validation @submit.prevent="register()">
+            <v-container>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field
+                    v-model="form.username"
+                    label="Username*"
+                    required
+                  />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field v-model="form.email" label="Email*" required />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field
+                    v-model="form.password"
+                    label="Password*"
+                    type="password"
+                    :rules="emailRules"
+                    required
+                  />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-radio-group v-model="form.gender" row>
+                    <v-radio label="Male" value="M" />
+                    <v-radio label="Female" value="F" />
+                    <v-radio label="Other" value="X" />
+                  </v-radio-group>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-form>
         </v-card-text>
         <div class="pb-12">
           <v-card-actions>
             <v-spacer />
-            <v-btn color="primary" @click="register()">Register</v-btn>
+            <v-btn color="primary" type="submit">Register</v-btn>
           </v-card-actions>
         </div>
       </v-card>
@@ -69,6 +72,10 @@ export default {
       email: '',
       gender: '',
     },
+    emailRules: [
+      (v) => !!v || 'Please enter a valid email',
+      (v) => /.+@.+\..+/.test(v) || 'Please enter a valid email',
+    ],
   }),
   watch: {
     showDialog(val) {
@@ -81,12 +88,17 @@ export default {
       this.$emit('close-dialog', false)
     },
     async register() {
-      const data = await this.$auth.register(this.form)
+      try {
+        const data = await this.$auth.register(this.form)
 
-      if (data.success) {
-        this.$router.push({
-          path: '/dashboard',
-        })
+        if (data.success) {
+          this.$router.push({
+            path: '/dashboard',
+          })
+        }
+      } catch (err) {
+        console.log(err)
+        // @TODO: show an error message that something went wrong
       }
     },
   },

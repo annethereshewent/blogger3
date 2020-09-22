@@ -7,9 +7,9 @@ export class Service {
     this.baseURL = baseURL
     this.store = store
 
-    const user = $cookies.get('user')
-    if (user != null) {
-      this.axios.setHeader('Authorization', `Bearer ${user.token}`)
+    const token = $cookies.get('token')
+    if (token != null) {
+      this.axios.setHeader('Authorization', `Bearer ${token}`)
     }
   }
 

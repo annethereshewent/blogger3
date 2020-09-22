@@ -19,12 +19,7 @@
       <v-row>
         <v-col id="login-column" lg="10" sm="6">
           <v-card id="login-panel" dark>
-            <v-form
-              ref="form"
-              v-model="valid"
-              lazy-validation
-              @submit.prevent="validate()"
-            >
+            <v-form ref="form" v-model="valid" @submit.prevent="validate()">
               <v-text-field
                 v-model="email"
                 :rules="emailRules"
@@ -88,22 +83,26 @@ export default {
   },
   methods: {
     async login() {
-      const result = await this.$store.dispatch('auth/login', {
-        email: this.email,
-        password: this.password,
-      })
-
-      if (result) {
-        this.$router.push({
-          path: '/dashboard',
+      try {
+        const result = await this.$store.dispatch('auth/login', {
+          email: this.email,
+          password: this.password,
         })
+
+        if (result) {
+          this.$router.push({
+            path: '/dashboard',
+          })
+        }
+      } catch (err) {
+        console.log(err)
+        // @TODO: show error message
       }
     },
     register() {
       this.dialog = true
     },
     validate() {
-      console.log('validating...')
       if (this.$refs.form.validate()) {
         this.error = null
         this.login()

@@ -38,7 +38,8 @@ export default {
    ** https://nuxtjs.org/guide/plugins
    */
   plugins: [
-    '~/plugins/auth'
+    '~/plugins/auth',
+    '~/plugins/user'
   ],
   /*
    ** Auto import components

@@ -1,22 +1,28 @@
 <template>
-  <div>
-    <div v-if="!not_confirmed">
-      successfully authenticated! your user is:
-      <div>{{ user }}</div>
-    </div>
-    <div v-else>
-      <!-- prettier was being super annoying -->
-      <!-- prettier-ignore -->
-      User is not confirmed yet! Please check your email and confirm your user account.
-    </div>
-  </div>
+  <v-container fluid>
+    <v-row>
+      <v-col>
+        <div v-if="confirmed">
+          successfully authenticated! your user is:
+          <div>{{ user }}</div>
+        </div>
+        <div v-else>
+          <confirmation-component
+            :user="user"
+            @set-confirmation="confirmed = $event"
+          />
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script>
 const NOT_CONFIRMED = 100
 export default {
   middleware: ['auth'],
+  layout: 'dashboard',
   data: () => ({
-    not_confirmed: false,
+    confirmed: true,
   }),
   computed: {
     user() {
@@ -41,7 +47,7 @@ export default {
           const data = err.response.data
           if (data.code == NOT_CONFIRMED) {
             // show modal that user isn't confirmed yet.
-            this.not_confirmed = true
+            this.confirmed = false
           }
         }
       }

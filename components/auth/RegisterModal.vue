@@ -2,16 +2,16 @@
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="600px">
       <v-card>
-        <div class="float-right">
-          <v-btn icon @click="closeDialog()">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-        </div>
-        <v-card-title>
-          <span class="headline">Sign Up</span>
-        </v-card-title>
-        <v-card-text>
-          <v-form lazy-validation @submit.prevent="register()">
+        <v-form lazy-validation @submit.prevent="register()">
+          <div class="float-right">
+            <v-btn icon @click="closeDialog()">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+          </div>
+          <v-card-title>
+            <span class="headline">Sign Up</span>
+          </v-card-title>
+          <v-card-text>
             <v-container>
               <v-row>
                 <v-col cols="12">
@@ -24,7 +24,12 @@
               </v-row>
               <v-row>
                 <v-col cols="12">
-                  <v-text-field v-model="form.email" label="Email*" required />
+                  <v-text-field
+                    v-model="form.email"
+                    :rules="emailRules"
+                    label="Email*"
+                    required
+                  />
                 </v-col>
               </v-row>
               <v-row>
@@ -33,7 +38,6 @@
                     v-model="form.password"
                     label="Password*"
                     type="password"
-                    :rules="emailRules"
                     required
                   />
                 </v-col>
@@ -48,14 +52,14 @@
                 </v-col>
               </v-row>
             </v-container>
-          </v-form>
-        </v-card-text>
-        <div class="pb-12">
-          <v-card-actions>
-            <v-spacer />
-            <v-btn color="primary" type="submit">Register</v-btn>
-          </v-card-actions>
-        </div>
+          </v-card-text>
+          <div class="pb-12">
+            <v-card-actions>
+              <v-spacer />
+              <v-btn color="primary" type="submit">Register</v-btn>
+            </v-card-actions>
+          </div>
+        </v-form>
       </v-card>
     </v-dialog>
   </v-row>

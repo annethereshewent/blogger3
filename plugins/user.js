@@ -9,6 +9,10 @@ class UserService extends Service {
   async fetchUserPosts(user) {
     return await this.get('/api/v1/users/dashboard')
   }
+
+  async checkConfirmation(user) {
+    return await this.get(`/api/v1/users/${user.id}/confirmations/status`)
+  }
 }
 
 export default async ({ app }, inject) => {

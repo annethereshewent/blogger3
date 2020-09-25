@@ -26,8 +26,8 @@ export default {
       const data = await this.$user.checkConfirmation(this.user)
 
       if (data.confirmed) {
-        this.$emit('set-confirmation', true)
         clearInterval(interval)
+        this.$emit('set-confirmation', true)
       }
     }, 5 * 1000)
   },

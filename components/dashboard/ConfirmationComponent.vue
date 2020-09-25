@@ -27,6 +27,7 @@ export default {
 
       if (data.confirmed) {
         this.$emit('set-confirmation', true)
+        clearInterval(interval)
       }
     }, 5 * 1000)
   },
